@@ -45,13 +45,14 @@ char    **ft_split(const char *s, char c)
     int i;
     int j;
     int start;
+    int word_count = ft_count(s, c);
 
     i = 0;
-    tab = malloc(sizeof(char *) * ft_count(s, c) + 1);
+    tab = malloc(sizeof(char *) * word_count + 1);
     if (!tab)
         return (0);
     start = 0;
-    while (start < ft_count(s, c))
+    while (start < word_count)
     {
         while (s[i] == c)
             i++;
@@ -70,25 +71,31 @@ char    **ft_split(const char *s, char c)
 
 int ft_atoi(const char *s)
 {
+    int i;
     int sign;
     int count;
     int result;
 
+    i = 0;
     sign = 1;
     count = 0;
-    while (*s >= 9 && *s <= 13 || *s == 32)
-        s++;
-    while (*s == '+' || *s == '-')
+    result = 0;
+    while (s[i] >= 9 && s[i] <= 13 || s[i] == 32)
+        i++;
+    while (s[i] == '+' || s[i] == '-')
     {
         count++;
         if (count > 1)
             return (0);
-        if (*s == '-')
+        if (s[i] == '-')
             sign *= -1;
-        s++;
+        i++;
     }
-    while (*s >= '0' && *s <= '9')
-        result = result * 10 + (*s++ - '0');
+    while (s[i] >= '0' && s[i] <= '9')
+    {
+        result = result * 10 + (s[i] - '0');
+        i++;
+    }
     return (result * sign);
 }
 
