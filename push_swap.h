@@ -12,7 +12,14 @@ int ft_count(const char *s, char c);
 int ft_len(const char *s, char c, int i);
 char    **ft_split(const char *s, char c);
 int  ft_strlen(const char *s);
-
 long ft_atoi(const char *s, int *error);
+
+typedef struct Struct {
+    long    value;
+    struct  Struct *next;
+} Struct;
+
+Struct *tab_list(long *tab, int count);
+Struct *create(long value);
 
 #endif
