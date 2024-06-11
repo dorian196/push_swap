@@ -69,7 +69,7 @@ char    **ft_split(const char *s, char c)
     return (tab);
 }
 
-long ft_atoi(const char *s)
+long ft_atoi(const char *s, int *error)
 {
     int i;
     int sign;
@@ -86,13 +86,21 @@ long ft_atoi(const char *s)
     {
         count++;
         if (count > 1)
+        {
+            *error = 1;
             return (0);
+        }
         if (s[i] == '-')
             sign *= -1;
         i++;
     }
     while (s[i] >= '0' && s[i] <= '9')
         result = result * 10 + (s[i++] - '0');
+    if (s[i] == '-' || s[i] == '+')
+        {
+            *error = 1;
+            return (0);
+        }
     return (result *= sign);
 }
 

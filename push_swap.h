@@ -13,6 +13,6 @@ int ft_len(const char *s, char c, int i);
 char    **ft_split(const char *s, char c);
 int  ft_strlen(const char *s);
 
-long ft_atoi(const char *s);
+long ft_atoi(const char *s, int *error);
 
 #endif

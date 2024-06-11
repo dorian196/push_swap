@@ -15,7 +15,7 @@ char    **ft_numeric(char **result)
                 j++;
             else
             {
-                write(1, "Error\n", 6);
+                write(1, "ErrorN\n", 7);
                 return (0);
             }
         }
@@ -103,16 +103,18 @@ long *ft_value(long *value, char **result, int count)
 {
     int i;
     int j;
+    int error;
 
     i = 0;
     j = 0;
-    value = malloc(sizeof(int) * (count + 1));
+    error = 0;
+    value = malloc(sizeof(long) * (count + 1));
     if (!value)
         return (0);
     while (result[i])
     {
-        value[j] = ft_atoi(result[i]);
-        if (value[j] > 2147483647 || value[j] < -2147483648)
+        value[j] = ft_atoi(result[i], &error);
+        if (value[j] > 2147483647 || value[j] < -2147483648 || error == 1) 
         {
             write(1, "ErrorV\n", 7);
             free(value);
@@ -134,18 +136,14 @@ int main(int argc, char **argv)
     int count;
 
     count = ft_count_words(0, argc, argv);
-    printf("count : %d\n", count);
     result = ft_result_split(count, result, argv, argc);
     if (ft_numeric(result) == 0)
         return (0);
     value = ft_value(value, result, count);
-    printf("%s\n", "ICI1");
-    if (ft_no_repeat_num(value, count) == 0)
-    {
-        printf("%s\n", "ICI2");
+    if (value == NULL)
         return (0);
-    }
-    printf("%s\n", "ICI3");
+    if (ft_no_repeat_num(value, count) == 0)
+        return (0);
     i = 0;
     while (i < count)
     {
