@@ -69,12 +69,12 @@ char    **ft_split(const char *s, char c)
     return (tab);
 }
 
-int ft_atoi(const char *s)
+long ft_atoi(const char *s)
 {
     int i;
     int sign;
     int count;
-    int result;
+    long result;
 
     i = 0;
     sign = 1;
@@ -92,11 +92,8 @@ int ft_atoi(const char *s)
         i++;
     }
     while (s[i] >= '0' && s[i] <= '9')
-    {
-        result = result * 10 + (s[i] - '0');
-        i++;
-    }
-    return (result * sign);
+        result = result * 10 + (s[i++] - '0');
+    return (result *= sign);
 }
 
 int  ft_strlen(const char *s)
