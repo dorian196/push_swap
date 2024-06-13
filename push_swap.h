@@ -19,6 +19,10 @@ typedef struct Struct {
     struct  Struct *next;
 } Struct;
 
+typedef struct s_stack {
+    Struct  *top;
+} t_stack;
+
 Struct *tab_list(long *tab, int count);
 Struct *create(long value);
 

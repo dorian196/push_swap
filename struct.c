@@ -41,3 +41,37 @@ Struct *tab_list(long *tab, int count)
     }
     return (head);
 }
+
+t_stack *init_stack()
+{
+    t_stack *stack;
+
+    stack = (t_stack *)malloc(sizeof(t_stack));
+    if (!stack)
+        return (NULL);
+    stack->top = NULL;
+    return (stack);
+}
+
+void    add_node(t_stack *stack, int value)
+{
+    Struct  *new_node;
+
+    new_node = create(value);
+    if (!new_node)
+        return (NULL);
+    new_node->next = stack->top;
+    stack->top = new_node;
+}
+
+int    supp_node(t_stack *stack)
+{
+    Struct  *save_node;
+    int value;
+
+    save_node = stack->top;
+    value = save_node->value;
+    stack->top = save_node->next;
+    free(save_node);
+    return (value);
+}
