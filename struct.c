@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-Struct *create(long value)
+Struct *create_node(long value)
 {
     Struct *new_node = (Struct *)malloc(sizeof(Struct));
     if (!new_node)
@@ -19,14 +19,14 @@ Struct *tab_list(long *tab, int count)
 
     if (count == 0)
         return (NULL);
-    head = create(tab[0]);
+    head = create_node(tab[0]);
     if (!head)
         return (NULL);
     current = head;
     i = 1;
     while (i < count)
     {
-        current->next = create(tab[i]);
+        current->next = create_node(tab[i]);
         if (!current->next)
         {
             while (head)
@@ -57,7 +57,7 @@ void    add_node(t_stack *stack, int value)
 {
     Struct  *new_node;
 
-    new_node = create(value);
+    new_node = create_node(value);
     if (!new_node)
         return (NULL);
     new_node->next = stack->top;

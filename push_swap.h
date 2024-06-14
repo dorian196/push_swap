@@ -24,6 +24,8 @@ typedef struct s_stack {
 } t_stack;
 
 Struct *tab_list(long *tab, int count);
-Struct *create(long value);
+Struct *create_node(long value);
+
+void    sa(t_stack *a);
 
 #endif
