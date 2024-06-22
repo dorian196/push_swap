@@ -11,3 +11,14 @@ void    sa(t_stack *a)
     second->next = first;
     a->top = second;
 }
+
+void    sb(t_stack *b)
+{
+    sa(b);
+}
+
+void    ss(t_stack *a, t_stack *b)
+{
+    sa(a);
+    sb(b);
+}
